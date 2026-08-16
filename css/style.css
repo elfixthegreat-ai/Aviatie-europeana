@@ -1,0 +1,180 @@
+/* European Skies, 1950-1980 -- sepia archive theme
+   Contrast targets: body text >= 4.5:1 against background. */
+
+:root {
+  --bg: #f4ecd8;
+  --bg-panel: #ece0c4;
+  --text: #3b2b20;
+  --text-muted: #5c4a38;
+  --accent: #8b5e34;
+  --accent-dark: #6b4423;
+  --line: #c9b48f;
+  --focus: #1a4d8f;
+  --card-bg: #faf3e3;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+h1, h2, h3 { font-family: "Iowan Old Style", Georgia, serif; color: var(--accent-dark); line-height: 1.25; }
+h1 { font-size: 2rem; border-bottom: 2px solid var(--line); padding-bottom: .35em; }
+h2 { font-size: 1.4rem; margin-top: 1.8em; }
+
+a { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 2px; }
+a:visited { color: #6e4a2e; }
+a:hover { color: var(--focus); }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  background: var(--card-bg);
+  color: var(--text);
+  padding: .75em 1.2em;
+  border: 2px solid var(--accent-dark);
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1em;
+  top: 1em;
+}
+
+.site-header {
+  background: var(--bg-panel);
+  border-bottom: 3px double var(--accent-dark);
+  padding: 1.2em 1.5em 0;
+}
+.header-inner { max-width: 900px; margin: 0 auto; }
+.site-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--accent-dark);
+  letter-spacing: .02em;
+}
+.site-tagline { margin: .1em 0 .8em; color: var(--text-muted); font-style: italic; }
+
+.primary-nav { max-width: 900px; margin: 0 auto; }
+.primary-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5em 1.2em;
+  padding: 0 0 .8em;
+  margin: 0;
+}
+.primary-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: .3em .2em;
+  border-bottom: 2px solid transparent;
+}
+.primary-nav a:hover, .primary-nav a:focus-visible { border-bottom-color: var(--accent-dark); }
+
+.breadcrumb {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: .8em 1.5em;
+  font-size: .92rem;
+  color: var(--text-muted);
+}
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3em;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb li:not(:last-child)::after { content: "\203A"; margin-left: .5em; color: var(--line); }
+.breadcrumb li[aria-current="page"] { color: var(--text); font-weight: 600; }
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1em 1.5em 3em;
+}
+
+.site-footer {
+  border-top: 3px double var(--accent-dark);
+  background: var(--bg-panel);
+  color: var(--text-muted);
+  padding: 1.2em 1.5em;
+  font-size: .88rem;
+}
+.site-footer p { max-width: 900px; margin: 0 auto; }
+
+/* Grids of cards */
+.decade-grid, .country-grid, .aircraft-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.decade-card, .country-card, .aircraft-card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1em 1.1em;
+}
+.decade-card a, .country-card a, .aircraft-card a { text-decoration: none; display: block; }
+.decade-card h3 { margin: 0 0 .3em; }
+.country-card { display: flex; flex-direction: column; gap: .3em; }
+.country-card .count { font-size: .85rem; color: var(--text-muted); }
+.aircraft-card .ac-name { display: block; font-weight: 700; margin-top: .4em; }
+.aircraft-card .ac-role { display: block; font-size: .85rem; color: var(--text-muted); }
+
+.scope-note {
+  font-size: .9rem;
+  color: var(--text-muted);
+  background: var(--bg-panel);
+  border-left: 3px solid var(--accent);
+  padding: .6em .9em;
+}
+
+/* Aircraft detail page */
+.ac-meta { background: var(--bg-panel); padding: 1em 1.2em; border-radius: 6px; }
+.ac-figure {
+  margin: 1.5em 0;
+  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1em;
+}
+.ac-figure figcaption { font-size: .85rem; color: var(--text-muted); margin-top: .5em; }
+
+.sources { margin-top: 2.2em; border-top: 1px solid var(--line); padding-top: 1em; }
+.sources ul { padding-left: 1.2em; }
+.sources li { margin-bottom: .5em; word-break: break-word; }
+.sources a { font-size: .9rem; }
+
+/* SVG schematic icons */
+.ac-icon { width: 100%; max-width: 320px; height: auto; }
+.ac-icon .fuselage { fill: var(--accent); opacity: .85; }
+.ac-icon .wing { fill: var(--accent-dark); opacity: .8; }
+.ac-icon .tailfin, .ac-icon .tailwing { fill: var(--accent-dark); opacity: .7; }
+.ac-icon .engine { fill: var(--text); opacity: .6; }
+.ac-icon .nosecone { fill: var(--text); opacity: .6; }
+.ac-icon .prop { stroke: var(--text); stroke-width: 2; opacity: .6; }
+.ac-icon .rotor-disc { fill: none; stroke: var(--text); stroke-width: 1; opacity: .35; stroke-dasharray: 3 3; }
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.5rem; }
+  .site-title { font-size: 1.3rem; }
+}
